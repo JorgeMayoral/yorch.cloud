@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yorch
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yorchdev
+  namespace: yorch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yorchdev
+  template:
+    metadata:
+      labels:
+        app: yorchdev
+    spec:
+      containers:
+        - name: yorchdev
+          image: registry.yorch.cloud/yorch.dev/yorch.dev:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits: {}
+      imagePullSecrets:
+        - name: harbor-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yorchdev-service
+  labels:
+    app: yorchdev
+  namespace: yorch
+spec:
+  selector:
+    app: yorchdev
+  type: ClusterIP
+  ports:
+    - targetPort: 8080
+      port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yorchdev-ingress
+  namespace: yorch
+spec:
+  rules:
+    - host: yorchdev.yorch.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yorchdev-service
+                port:
+                  number: 80
+    - host: yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yorchdev-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - yorchdev.yorch.cloud
+        - yorch.dev
+      secretName: yorchdev-certificate
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: yorchdev-certificate
+  namespace: yorch
+spec:
+  secretName: yorchdev-certificate
+  issuerRef:
+    name: cloudflare-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - yorchdev.yorch.cloud
+    - yorch.dev
