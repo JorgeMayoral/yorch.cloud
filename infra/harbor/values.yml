@@ -1,0 +1,12 @@
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: secret
+    secret:
+      secretName: "harbor-certificate"
+  ingress:
+    hosts:
+      core: registry.yorch.cloud
+
+externalURL: https://registry.yorch.cloud
