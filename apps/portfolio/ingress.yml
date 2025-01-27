@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yorchdev-ingress
+  namespace: yorch
+spec:
+  rules:
+    - host: yorchdev.yorch.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yorchdev-service
+                port:
+                  number: 80
+    - host: yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yorchdev-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - yorchdev.yorch.cloud
+        - yorch.dev
+      secretName: yorchdev-certificate
