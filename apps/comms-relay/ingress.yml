@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: commsrelay-ingress
+  namespace: yorch
+spec:
+  rules:
+    - host: social.yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: commsrelay-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - social.yorch.dev
+      secretName: commsrelay-certificate

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: commsrelay-certificate
+  namespace: yorch
+spec:
+  secretName: commsrelay-certificate
+  issuerRef:
+    name: cloudflare-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - social.yorch.dev
