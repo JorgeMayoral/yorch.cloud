@@ -17,7 +17,7 @@ spec:
         - name: commsrelay
           image: registry.yorch.cloud/library/comms-relay:03aa91e93922bffbceabcf93aacf00342f76948c
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           resources:
             limits: {}
       imagePullSecrets:
