@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: commsrelay-certificate
-  namespace: yorch
+  namespace: yorch-commsrelay
 spec:
   secretName: commsrelay-certificate
   issuerRef:

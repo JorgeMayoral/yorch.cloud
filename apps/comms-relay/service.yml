@@ -4,7 +4,7 @@ metadata:
   name: commsrelay-service
   labels:
     app: commsrelay
-  namespace: yorch
+  namespace: yorch-commsrelay
 spec:
   selector:
     app: commsrelay
