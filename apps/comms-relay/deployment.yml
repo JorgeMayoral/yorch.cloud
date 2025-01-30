@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: commsrelay
-          image: registry.yorch.cloud/library/comms-relay:b4dd8f9bfbd69f9947e41aae8e5a361565072ee1
+          image: registry.yorch.cloud/library/comms-relay:475591b00b589ccc4fd4bd4b1d2964024b271aa4
           ports:
             - containerPort: 3000
           env:
