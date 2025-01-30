@@ -15,9 +15,25 @@ spec:
     spec:
       containers:
         - name: commsrelay
-          image: registry.yorch.cloud/library/comms-relay:03aa91e93922bffbceabcf93aacf00342f76948c
+          image: registry.yorch.cloud/library/comms-relay:b4dd8f9bfbd69f9947e41aae8e5a361565072ee1
           ports:
             - containerPort: 3000
+          env:
+            - name: AUTH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: commsrelay-secret
+                  key: auth-username
+            - name: AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: commsrelay-secret
+                  key: auth-password
+            - name: AUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: commsrelay-secret
+                  key: auth-secret
           resources:
             limits: {}
       imagePullSecrets:
