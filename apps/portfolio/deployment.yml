@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: yorchdev
-          image: registry.yorch.cloud/yorch.dev/yorch.dev:400e153d7ccf297692989154bd248ba04d9d1446
+          image: registry.yorch.cloud/yorch.dev/yorch.dev:7da760a0b896a12127cfb3811d8c0c8db97555aa
           ports:
             - containerPort: 8080
           resources:
