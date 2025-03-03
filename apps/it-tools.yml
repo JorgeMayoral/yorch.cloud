@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:JorgeMayoral/yorch.cloud.git
+    repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
     targetRevision: main
     path: it-tools
   destination:
