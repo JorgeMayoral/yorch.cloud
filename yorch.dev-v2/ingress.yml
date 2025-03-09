@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: v2-ingress
+  namespace: yorch
+spec:
+  rules:
+    - host: v2.yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: v2-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - v2.yorch.dev
+      secretName: v2-certificate

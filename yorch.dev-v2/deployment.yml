@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: v2
+  namespace: yorch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: v2
+  template:
+    metadata:
+      labels:
+        app: v2
+    spec:
+      containers:
+        - name: v2
+          image: registry.yorch.cloud/yorch.dev/v2:64198d41a2b53a84c00a0a744f3e7ea697190385
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+      imagePullSecrets:
+        - name: harbor-secret
