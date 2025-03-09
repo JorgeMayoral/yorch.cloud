@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - registry.yorch.cloud/yorch.dev/v2:latest
