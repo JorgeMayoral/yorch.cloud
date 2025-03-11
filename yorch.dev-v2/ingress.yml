@@ -15,7 +15,18 @@ spec:
                 name: v2-service
                 port:
                   number: 80
+    - host: es.v2.yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: v2-service
+                port:
+                  number: 80
   tls:
     - hosts:
         - v2.yorch.dev
+        - es.v2.yorch.dev
       secretName: v2-certificate
