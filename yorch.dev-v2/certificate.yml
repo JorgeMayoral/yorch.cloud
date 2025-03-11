@@ -10,4 +10,3 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - v2.yorch.dev
-    - es.v2.yorch.dev
