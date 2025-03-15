@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home
+  labels:
+    app: home
+  namespace: personal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home
+  template:
+    metadata:
+      name: home-pod
+      labels:
+        app: home
+    spec:
+      containers:
+        - name: home-container
+          image: glanceapp/glance
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+          volumeMounts:
+            - name: home-configmap
+              mountPath: /app/glance.yml
+              subPath: glance.yml
+      volumes:
+        - name: home-configmap
+          configMap:
+            name: home-configmap

@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-configmap
+  namespace: personal
+data:
+  glance.yml: |
+    pages:
+      - name: Home
+        columns:
+          - size: small
+            widgets:
+              - type: clock
+                hour-format: 24h
+              - type: weather
+                location: Ciudad Real, Spain
+              - type: calendar
+                first-day-of-week: monday
+          - size: full
+            widgets:
+              - type: search
+                search-engine: duckduckgo
+                bangs:
+                  - title: YouTube
+                    shortcut: "!yt"
+                    url: https://www.youtube.com/results?search_query={QUERY}
+                  - title: lib.rs
+                    shortcut: "!crate"
+                    url: https://lib.rs/search?q={QUERY}
+                  - title: docs.rs
+                    shortcut: "!rsdocs"
+                    url: https://docs.rs/releases/search?query={QUERY}
+                  - title: Rust std docs
+                    shortcut: "!rs"
+                    url: https://doc.rust-lang.org/std/index.html?search={QUERY}
+              - type: bookmarks
+                groupd:
+                  - links:
+                      - title: Github
+                        url: https://github.com/
+                      - title: RSS Feed
+                        url: https://feed.yorch.cloud
+                      - title: Proton Mail
+                        url: https://mail.proton.me/
+                      - title: Proton Drive
+                        url: https://drive.proton.me/
+                  - title: yorch.cloud
+                    color: 217 92 83
+                    links:
+                      - title: ArgoCD
+                        url: https://argocd.yorch.cloud/
+                      - title: Harbor
+                        url: https://registry.yorch.cloud/
+                  
+    theme:
+      background-color: 240 21 15
+      contrast-multiplier: 1.2
+      primary-color: 217 92 83
+      positive-color: 115 54 76
+      negative-color: 347 70 65
