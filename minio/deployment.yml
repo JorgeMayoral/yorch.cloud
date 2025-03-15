@@ -19,6 +19,13 @@ spec:
       containers:
         - name: minio-container
           image: minio/minio
+          args:
+            - server
+            - --console-address
+            - :9001
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
           env:
             - name: MINIO_ACCESS_KEY
               valueFrom:
