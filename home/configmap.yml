@@ -34,7 +34,7 @@ data:
                     shortcut: "!rs"
                     url: https://doc.rust-lang.org/std/index.html?search={QUERY}
               - type: bookmarks
-                groupd:
+                group:
                   - links:
                       - title: Github
                         url: https://github.com/
