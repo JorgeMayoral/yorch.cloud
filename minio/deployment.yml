@@ -34,8 +34,9 @@ spec:
                   key: access-key
             - name: MINIO_SECRET_KEY
               valueFrom:
-                name: minio-secret
-                key: secret-key
+                secretKeyRef:
+                  name: minio-secret
+                  key: secret-key
           resources:
             limits:
               cpu: 200m
