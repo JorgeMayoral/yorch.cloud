@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: minio-certificate
+  namespace: minio
+spec:
+  secretName: minio-certificate
+  issuerRef:
+    name: cloudflare-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - storage.yorch.cloud
+    - api.storage.yorch.cloud

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    app: minio
+  namespace: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      name: minio-pod
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio-container
+          image: minio/minio
+          env:
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: access-key
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                name: minio-secret
+                key: secret-key
+          resources:
+            limits:
+              cpu: 200m
+              memory: 512Mi
+          volumeMounts:
+            - name: minio-storage
+              mountPath: /data/minio
+      volumes:
+        - name: minio-storage
+          persistentVolumeClaim:
+            claimName: minio-pvc
