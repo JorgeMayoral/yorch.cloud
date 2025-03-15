@@ -51,6 +51,8 @@ data:
                         url: https://argocd.yorch.cloud/
                       - title: Harbor
                         url: https://registry.yorch.cloud/
+                      - title: MinIO
+                        url: https://storage.yorch.cloud/
                   
     theme:
       background-color: 240 21 15
