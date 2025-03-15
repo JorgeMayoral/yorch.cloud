@@ -14,7 +14,7 @@ spec:
               service:
                 name: minio-service
                 port:
-                  number: 9000
+                  number: 9001
     - host: api.storage.yorch.cloud
       http:
         paths:
@@ -24,7 +24,7 @@ spec:
               service:
                 name: minio-service
                 port:
-                  number: 9001
+                  number: 9000
   tls:
     - hosts:
         - storage.yorch.cloud
