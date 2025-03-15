@@ -21,6 +21,7 @@ spec:
           image: minio/minio
           args:
             - server
+            - /data/minio
             - --console-address
             - :9001
           ports:
