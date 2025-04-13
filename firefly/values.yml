@@ -1,7 +1,7 @@
 env:
   DEFAULT_LANGUAGE: es_ES
   TZ: "Europe/Madrid"
-ingres:
+ingress:
   main:
     enabled: true
     hosts:
