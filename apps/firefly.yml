@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://geek-cookbook.github.io/charts/
     chart: geek-cookbook/firefly-iii
-    targetRevision: 0.3.0
+    targetRevision: 0.2.2
     helm:
       valueFiles:
         - valuesRepo://values.yaml
