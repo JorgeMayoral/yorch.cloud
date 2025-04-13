@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://geek-cookbook.github.io/charts
-    chart: geek-cookbook/firefly-iii
+    chart: firefly-iii
     targetRevision: 0.2.2
     helm:
       valueFiles:
@@ -21,7 +21,7 @@ spec:
       selfHeal: true
   sources:
     - repoURL: https://geek-cookbook.github.io/charts
-      chart: geek-cookbook/firefly-iii
+      chart: firefly-iii
       targetRevision: 0.2.2
     - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
       path: firefly
