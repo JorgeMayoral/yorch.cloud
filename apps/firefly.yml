@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: finances
+  namespace: personal
+spec:
+  project: default
+  source:
+    repoURL: https://geek-cookbook.github.io/charts/
+    chart: geek-cookbook/firefly-iii
+    targetRevision: 0.3.0
+    helm:
+      valueFiles:
+        - valuesRepo://values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: personal
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - repoURL: https://geek-cookbook.github.io/charts/
+      chart: geek-cookbook/firefly-iii
+      targetRevision: 0.3.0
+    - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
+      path: firefly
+      targetRevision: main
+      ref: valuesRepo
