@@ -22,7 +22,7 @@ spec:
   sources:
     - repoURL: https://geek-cookbook.github.io/charts/
       chart: geek-cookbook/firefly-iii
-      targetRevision: 0.3.0
+      targetRevision: 0.2.2
     - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
       path: firefly
       targetRevision: main
