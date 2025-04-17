@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: https://firefly-iii.github.io/kubernetes/
     chart: firefly-iii-stack
+    targetRevision: 0.8.2
     helm:
       valueFiles:
         - valuesRepo://values.yaml
@@ -21,6 +22,7 @@ spec:
   sources:
     - repoURL: https://firefly-iii.github.io/kubernetes/
       chart: firefly-iii-stack
+      targetRevision: 0.8.2
     - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
       path: firefly
       targetRevision: main
