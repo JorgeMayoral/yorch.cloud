@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: home
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
+    targetRevision: main
+    path: hollo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yorch
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hollo
+  labels:
+    app: hollo
+  namespace: yorch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hollo
+  template:
+    metadata:
+      name: hollo-pod
+      labels:
+        app: hollo
+    spec:
+      containers:
+        - name: hollo-container
+          image: ghcr.io/fedify-dev/hollo:canary
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+          envFrom:
+            - configMapRef:
+                name: hollo-configmap

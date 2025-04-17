@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hollo-configmap
+  namespace: yorch
+data:
+  DATABASE_URL: "postgres://user:password@postgres:5432/database"
+  SECRET_KEY: "${SECRET_KEY}"
+  BEHIND_PROXY: "true"
+  DRIVE_DISK: s3
+  ASSET_URL_BASE: https://api.storage.yorch.cloud/hollo/
+  S3_REGION: us-east-1
+  S3_BUCKET: hollo
+  S3_ENDPOINT_URL: https://api.storage.yorch.cloud
+  S3_FORCE_PATH_STYLE: "true"
+  AWS_ACCESS_KEY_ID: minioadmin
+  AWS_SECRET_ACCESS_KEY: minioadmin

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hollo-ingress
+  namespace: yorch
+spec:
+  rules:
+    - host: social.yorch.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hollo-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - social.yorch.dev
+      secretName: hollo-certificate
