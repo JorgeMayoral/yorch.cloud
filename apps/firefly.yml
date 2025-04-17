@@ -6,9 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://geek-cookbook.github.io/charts
-    chart: firefly-iii
-    targetRevision: 0.2.2
+    repoURL: https://firefly-iii.github.io/kubernetes/
+    chart: firefly-iii-stack
     helm:
       valueFiles:
         - valuesRepo://values.yaml
@@ -20,9 +19,8 @@ spec:
       prune: true
       selfHeal: true
   sources:
-    - repoURL: https://geek-cookbook.github.io/charts
-      chart: firefly-iii
-      targetRevision: 0.2.2
+    - repoURL: https://firefly-iii.github.io/kubernetes/
+      chart: firefly-iii-stack
     - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
       path: firefly
       targetRevision: main

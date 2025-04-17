@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: personal
 resources:
   - certificate.yml
-  - ingress.yml
-  - service.yml

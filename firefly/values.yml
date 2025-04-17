@@ -1,13 +1,21 @@
-env:
-  DEFAULT_LANGUAGE: es_ES
-  TZ: "Europe/Madrid"
-ingress:
-  main:
+firefly-iii:
+  config:
+    env:
+      DEFAULT_LANGUAGE: "es_ES"
+      TZ: "Europe/Madrid"
+
+  ingress:
     enabled: true
     hosts:
-      - host: finances.yorch.cloud
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              port: http
+      - finances.yorch.cloud
+    tls:
+      - secretName: finances-certificate
+        hosts:
+          - finances.yorch.cloud
+
+firefly-db:
+  configs:
+    TZ: Europe/Madrid
+
+importer:
+  enabled: false
