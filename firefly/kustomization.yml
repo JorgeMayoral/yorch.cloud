@@ -3,3 +3,12 @@ kind: Kustomization
 namespace: personal
 resources:
   - certificate.yml
+  - db-deployment.yml
+  - db-pvc.yml
+  - db-service.yml
+  - deployment.yml
+  - ingress.yml
+  - pv.yml
+  - pvc.yml
+  - sealed-secret.yml
+  - service.yml

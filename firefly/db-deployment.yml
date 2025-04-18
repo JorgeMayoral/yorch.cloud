@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finances-db
+  labels:
+    app: finances-db
+  namespace: personal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finances-db
+  template:
+    metadata:
+      name: finances-db-pod
+      labels:
+        app: finances-db
+    spec:
+      containers:
+        - name: firefly-iii-db-container
+          image: yobasystems/alpine-mariadb:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: finances-secret
+                  key: db-password
+          volumeMounts:
+            - name: firefly-iii-db-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: firefly-iii-db-storage
+          persistentVolumeClaim:
+            claimName: finances-db-pvc

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finances
+  labels:
+    app: finances
+  namespace: personal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finances
+  template:
+    metadata:
+      name: finances-pod
+      labels:
+        app: finances
+    spec:
+      containers:
+        - name: firefly-iii-container
+          image: firefly-iii/core
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_ENV
+              value: "local"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: finances-secret
+                  key: app-key
+            - name: DB_HOST
+              value: finances-db-service
+            - name: DB_CONNECTION
+              value: mysql
+            - name: DB_DATABASE
+              value: "fireflyiii"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: finances-secret
+                  key: db-password
+            - name: TRUSTED_PROXIES
+              value: "**"
+          volumeMounts:
+            - name: firefly-iii-storage
+              mountPath: /var/www/html/firefly-iii/storage/upload
+      volumes:
+        - name: firefly-iii-storage
+          persistentVolumeClaim:
+            claimName: finances-pvc

@@ -6,12 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://firefly-iii.github.io/kubernetes/
-    chart: firefly-iii-stack
-    targetRevision: 0.8.2
-    helm:
-      valueFiles:
-        - valuesRepo://values.yaml
+    repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
+    targetRevision: main
+    path: firefly
   destination:
     server: https://kubernetes.default.svc
     namespace: personal
@@ -19,11 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-  sources:
-    - repoURL: https://firefly-iii.github.io/kubernetes/
-      chart: firefly-iii-stack
-      targetRevision: 0.8.2
-    - repoURL: https://github.com/JorgeMayoral/yorch.cloud.git
-      path: firefly
-      targetRevision: main
-      ref: valuesRepo

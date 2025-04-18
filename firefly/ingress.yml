@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: finances-ingress
+  namespace: personal
+spec:
+  rules:
+    - host: finances.yorch.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: finances-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - finances.yorch.clou
+      secretName: finances-certificate
