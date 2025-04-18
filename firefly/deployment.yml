@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: firefly-iii-container
-          image: firefly-iii/core
+          image: fireflyiii/core
           ports:
             - containerPort: 8080
           env:
