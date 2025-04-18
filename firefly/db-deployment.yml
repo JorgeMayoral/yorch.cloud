@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
         - name: firefly-iii-db-container
-          image: yobasystems/alpine-mariadb:latest
+          image: bitnami/mariadb:latest
           ports:
             - containerPort: 3306
           env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MARIADB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: finances-secret
