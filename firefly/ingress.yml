@@ -17,5 +17,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - finances.yorch.clou
+        - finances.yorch.cloud
       secretName: finances-certificate
