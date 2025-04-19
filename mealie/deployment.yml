@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie
+  labels:
+    app: mealie
+  namespace: personal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      name: mealie-pod
+      labels:
+        app: mealie
+    spec:
+      containers:
+        - name: mealie-container
+          image: ghcr.io/mealie-recipes/mealie:v2.8.0
+          ports:
+            - containerPort: 9000
+          env:
+            - name: ALLOW_SIGNUP
+              value: "false"
+            - name: TZ
+              value: "Europe/Madrid"
+            - name: BASE_URL
+              value: "https://mealie.yorch.cloud"
+          volumeMounts:
+            - name: mealie-storage
+              mountPath: /app/data
+      volumes:
+        - name: mealie-storage
+          persistentVolumeClaim:
+            claimName: mealie-pvc
