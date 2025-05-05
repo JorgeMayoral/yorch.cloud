@@ -27,19 +27,16 @@ spec:
                 name: photos-secret
                 optional: false
           volumeMounts:
-            - name: photos-storage-originals
+            - name: photos-storage
               mountPath: /photoprism/originals
-            - name: photos-storage-import
+              subPath: originals
+            - name: photos-storage
               mountPath: /photoprism/import
-            - name: photos-storage-storage
+              subPath: import
+            - name: photos-storage
               mountPath: /photoprism/storage
+              subPath: storage
       volumes:
-        - name: photos-storage-originals
-          persistentVolumeClaim:
-            claimName: photos-pvc
-        - name: photos-storage-import
-          persistentVolumeClaim:
-            claimName: photos-pvc
-        - name: photos-storage-storage
+        - name: photos-storage
           persistentVolumeClaim:
             claimName: photos-pvc
