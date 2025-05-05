@@ -22,15 +22,6 @@ spec:
           ports:
             - containerPort: 2342
               name: http
-          env:
-            - name: PHOTOPRISM_DEBUG
-              value: "false"
-            - name: PHOTOPRISM_DATABASE_DRIVER
-              value: internal
-            - name: PHOTOPRISM_HTTP_HOST
-              value: 0.0.0.0
-            - name: PHOTOPRISM_HTTP_PORT
-              value: "2342"
           envFrom:
             - secretRef:
                 name: photos-secret
