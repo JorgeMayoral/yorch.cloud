@@ -42,10 +42,6 @@ spec:
               mountPath: /photoprism/import
             - name: photos-storage-storage
               mountPath: /photoprism/storage
-          readinessProbe:
-            httpGet:
-              path: /api/v1/status
-              port: http
       volumes:
         - name: photos-storage-originals
           persistentVolumeClaim:
