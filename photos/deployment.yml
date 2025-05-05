@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photos
+  labels:
+    app: photos
+  namespace: personal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: photos
+  template:
+    metadata:
+      name: photos-pod
+      labels:
+        app: photos
+    spec:
+      containers:
+        - name: photos-container
+          image: photoprism/photoprism
+          ports:
+            - containerPort: 2342
+              name: http
+          env:
+            - name: PHOTOPRISM_DEBUG
+              value: "false"
+            - name: PHOTOPRISM_DATABASE_DRIVER
+              value: internal
+            - name: PHOTOPRISM_HTTP_HOST
+              value: 0.0.0.0
+            - name: PHOTOPRISM_HTTP_PORT
+              value: "2342"
+          envFrom:
+            - secretRef:
+                name: photos-secret
+                optional: false
+          volumeMounts:
+            - name: photos-storage-originals
+              mountPath: /photoprism/originals
+            - name: photos-storage-import
+              mountPath: /photoprism/import
+            - name: photos-storage-storage
+              mountPath: /photoprism/storage
+          readinessProbe:
+            httpGet:
+              path: /api/v1/status
+              port: http
+      volumes:
+        - name: photos-storage-originals
+          persistentVolumeClaim:
+            claimName: photos-pvc
+        - name: photos-storage-import
+          persistentVolumeClaim:
+            claimName: photos-pvc
+        - name: photos-storage-storage
+          persistentVolumeClaim:
+            claimName: photos-pvc

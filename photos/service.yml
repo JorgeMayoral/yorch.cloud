@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: photos-service
+  labels:
+    app: photos
+  namespace: personal
+spec:
+  selector:
+    app: photos
+  type: ClusterIP
+  ports:
+    - targetPort: 2342
+      port: 80

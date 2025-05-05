@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: photos-ingress
+  namespace: personal
+spec:
+  rules:
+    - host: photos.yorch.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photos-service
+                port:
+                  number: 80
+    - host: fotos.yorch.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photos-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - photos.yorch.cloud
+        - fotos.yorch.cloud
+      secretName: photos-certificate
