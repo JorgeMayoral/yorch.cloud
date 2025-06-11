@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - registry.yorch.cloud/yorch.dev/yorch.dev:e79e2faeab318801316a0cbafceb864ad62b1f7d
+  - registry.yorch.cloud/yorch.dev/yorch.dev:e2c30daa2da0415562979fb6734840667fe1a481
